@@ -1,14 +1,15 @@
 extends CharacterBody2D
 var hp = 2
 var movetime = true
-var left = true
-var right = false
+@export var gravity = 500
 
 func _physics_process(delta):
 	if hp <= 0:
 		queue_free()
 	if is_on_wall():
 		velocity.x * -1
+	if not is_on_floor():
+		velocity.y += gravity * delta
 	
 		
 	move_and_slide()
