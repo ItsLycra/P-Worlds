@@ -1,0 +1,87 @@
+[gd_scene load_steps=11 format=3 uid="uid://cop4a5drikdw5"]
+
+[ext_resource type="Script" path="res://enemy.gd" id="1_3edwx"]
+[ext_resource type="Texture2D" uid="uid://c1tqghxah17kj" path="res://turretpider.png" id="2_an4x6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_beh0t"]
+atlas = ExtResource("2_an4x6")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cat4h"]
+atlas = ExtResource("2_an4x6")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2s7om"]
+atlas = ExtResource("2_an4x6")
+region = Rect2(0, 256, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ukvep"]
+atlas = ExtResource("2_an4x6")
+region = Rect2(256, 256, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_732jt"]
+atlas = ExtResource("2_an4x6")
+region = Rect2(0, 512, 256, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4vb2v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_beh0t")
+}],
+"loop": true,
+"name": &"pideridle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cat4h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2s7om")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ukvep")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_732jt")
+}],
+"loop": true,
+"name": &"piderwalk",
+"speed": 16.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_al6v7"]
+size = Vector2(12.9598, 17.7731)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vsvgo"]
+size = Vector2(93.9394, 137.879)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_3edwx")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_4vb2v")
+animation = &"piderwalk"
+frame = 3
+frame_progress = 0.557256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.337779, 12.5)
+rotation = -3.14159
+scale = Vector2(7.92261, -8.496)
+shape = SubResource("RectangleShape2D_al6v7")
+
+[node name="Area2D" type="Area2D" parent="." groups=["enemy"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 14)
+scale = Vector2(1.32, 1.32)
+shape = SubResource("RectangleShape2D_vsvgo")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 4.0
+autostart = true
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
