@@ -20,7 +20,7 @@ func _physics_process(delta):
 	if hp <= 0:
 		pass
 
-	if Input.is_action_just_pressed("p2jump") and is_on_wall():
+	if Input.is_action_just_pressed("p1jump") and is_on_wall():
 		velocity.y = walljump
 		direction = direction * -1.0
 	
