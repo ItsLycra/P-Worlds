@@ -7,6 +7,7 @@ var gravity = 400.0
 @export var decel = 0.1
 @export var airdecel = 0.05
 @onready var bullet_scene = preload("res://b.tscn")
+@export var walljump = -200
 var shooting = true
 var left = false
 var hp = 100
