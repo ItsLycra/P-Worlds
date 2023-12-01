@@ -9,10 +9,16 @@ var gravity = 400.0
 @onready var bullet_scene = preload("res://b.tscn")
 var shooting = true
 var left = false
+var hp = 100
+
 
 func _physics_process(delta):
 	var direction = Input.get_axis("p1left", "p1right")
 	Globals.direct = direction
+	
+	if hp <= 0:
+		pass
+	
 	
 	if not is_on_floor():
 		velocity.y += gravity * delta
@@ -38,6 +44,7 @@ func _physics_process(delta):
 		
 	move_and_slide()
 	face_direction()
+	take_damage()
 	
 func shoot(delta):
 	if shooting == true:
@@ -64,3 +71,6 @@ func face_direction():
 
 	elif Globals.direct < 0:
 		$Sprite2D.flip_h = true
+
+func take_damage():
+	pass
