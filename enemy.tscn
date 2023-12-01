@@ -58,6 +58,7 @@ size = Vector2(12.9598, 17.7731)
 size = Vector2(93.9394, 137.879)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
+scale = Vector2(5.06508, 5.06508)
 script = ExtResource("1_3edwx")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

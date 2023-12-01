@@ -35,26 +35,28 @@ func latk():
 		$latkcd.start()
 		if rightatk == true:
 			$AnimationPlayer.play("LATK")
+			$AnimatedSprite2D.play("atk")
 			await get_tree().create_timer(0.5).timeout
 			$AnimationPlayer.play("RESET")
+			$AnimatedSprite2D.play("done")
 			latkcd = false
 		elif leftatk == true:
 			$AnimationPlayer.play("LATK2")
+			$AnimatedSprite2D.play("atk")
 			await get_tree().create_timer(0.5).timeout
 			$AnimationPlayer.play("RESET2")
+			$AnimatedSprite2D.play("done")
 			latkcd = false
 	
 func face_direction():
 	if direction > 0:
-		$Sprite2D.flip_h = false
-#		$AnimationPlayer.play("RESET")
+		$AnimatedSprite2D.flip_h = false
 		rightatk = true
 		leftatk = false
 		if $AnimationPlayer.current_animation != "LATK":
 			$AnimationPlayer.play("RESET")
 	elif direction < 0:
-		$Sprite2D.flip_h = true
-#		$AnimationPlayer.play("RESET2")
+		$AnimatedSprite2D.flip_h = true
 		rightatk = false
 		leftatk = true
 		if $AnimationPlayer.current_animation != "LATK2":

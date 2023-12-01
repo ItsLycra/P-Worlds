@@ -1,13 +1,54 @@
-[gd_scene load_steps=11 format=3 uid="uid://dwssxssixj1b"]
+[gd_scene load_steps=16 format=3 uid="uid://dwssxssixj1b"]
 
 [ext_resource type="Script" path="res://player2.gd" id="1_an2el"]
-[ext_resource type="Texture2D" uid="uid://bkshxvr674s0u" path="res://icon.svg" id="2_3huuf"]
+[ext_resource type="Texture2D" uid="uid://bm2m357h0tdru" path="res://Play2.png" id="2_osd3x"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_6bynq"]
-radius = 69.1158
+[sub_resource type="AtlasTexture" id="AtlasTexture_wj7qc"]
+atlas = ExtResource("2_osd3x")
+region = Rect2(0, 0, 155, 120)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_krr47"]
-radius = 71.0
+[sub_resource type="AtlasTexture" id="AtlasTexture_e73do"]
+atlas = ExtResource("2_osd3x")
+region = Rect2(155, 0, 155, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0o4wf"]
+atlas = ExtResource("2_osd3x")
+region = Rect2(0, 120, 155, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rldn8"]
+atlas = ExtResource("2_osd3x")
+region = Rect2(0, 0, 155, 120)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ub6cf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wj7qc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e73do")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0o4wf")
+}],
+"loop": true,
+"name": &"atk",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rldn8")
+}],
+"loop": true,
+"name": &"done",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_34rk1"]
+size = Vector2(106.759, 216.188)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y482t"]
+size = Vector2(112.097, 221.526)
 
 [sub_resource type="Animation" id="Animation_xx76b"]
 resource_name = "LATK"
@@ -18,10 +59,10 @@ tracks/0/path = NodePath("atk/CollisionShape2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
+"times": PackedFloat32Array(0, 0.5, 0.8),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(-3.72209, -2.9859), Vector2(0.017, -2.986), Vector2(0.017, 0)]
+"values": [Vector2(0.321223, -13.2649), Vector2(1.3966, -12.7967), Vector2(5.23562, -8.10459)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -30,10 +71,10 @@ tracks/1/path = NodePath("atk/CollisionShape2D:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
+"times": PackedFloat32Array(0, 0.5, 0.8),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [0.0738865, 0.778417, 1.5708]
+"values": [0.0980082, 0.193648, 0.692232]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -72,7 +113,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-3.72209, -2.9859)]
+"values": [Vector2(0.321, -13.265)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -84,7 +125,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0738865]
+"values": [0.0977384]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -132,10 +173,10 @@ tracks/1/path = NodePath("atk/CollisionShape2D:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
+"times": PackedFloat32Array(0, 0.5, 0.8),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(3.722, -2.986), Vector2(-0.017, -2.986), Vector2(-0.017, 0)]
+"values": [Vector2(-0.321, -13.265), Vector2(-0.017, -12.797), Vector2(-5.236, -8.105)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -144,10 +185,10 @@ tracks/2/path = NodePath("atk/CollisionShape2D:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
+"times": PackedFloat32Array(0, 0.5, 0.8),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [-0.0733038, -0.778417, -1.5708]
+"values": [-0.0977384, -0.193732, -0.692896]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -186,7 +227,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [-0.0733038]
+"values": [-0.0977384]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -198,7 +239,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(3.722, -2.986)]
+"values": [Vector2(-0.321, -13.265)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -222,22 +263,26 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_guh0u"]
-size = Vector2(6.39836, 14.9295)
+size = Vector2(10.5411, 9.29513)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 scale = Vector2(0.374674, 0.374674)
 script = ExtResource("1_an2el")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_3huuf")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.91945, 1.91945)
+sprite_frames = SubResource("SpriteFrames_ub6cf")
+animation = &"done"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_6bynq")
+position = Vector2(-2.66899, -1.33449)
+shape = SubResource("RectangleShape2D_34rk1")
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_krr47")
+position = Vector2(-2.66899, -1.3345)
+shape = SubResource("RectangleShape2D_y482t")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 speed_scale = 2.0
@@ -250,12 +295,14 @@ position = Vector2(74, 0)
 scale = Vector2(6.25704, 6.25704)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="atk"]
-position = Vector2(-3.72209, -2.9859)
-rotation = 0.0738865
+position = Vector2(0.321, -13.265)
+rotation = 0.0977384
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_guh0u")
 disabled = true
 
 [node name="latkcd" type="Timer" parent="."]
 wait_time = 0.6
 
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="timeout" from="latkcd" to="." method="_on_latkcd_timeout"]
