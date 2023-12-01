@@ -2,6 +2,9 @@ extends CharacterBody2D
 var direction : int
 var decel = 0.175
 var airdecel = 0.01
+var rightatk = true
+var leftatk = false
+var latkcd = true
 @export var speed = 200
 @export var jump_speed = -150
 @export var gravity = 500
@@ -24,15 +27,35 @@ func _physics_process(delta):
 	latk()
 	
 func latk():
-	if Input.is_action_pressed("p2latk"):
-		Globals.latk = true
-		await get_tree().create_timer(1).timeout
-		Globals.latk = false
+	if Input.is_action_pressed("p2latk") and latkcd == true:
+		$latkcd.start()
+		if rightatk == true:
+			$AnimationPlayer.play("LATK")
+			await get_tree().create_timer(0.5).timeout
+			$AnimationPlayer.play("RESET")
+			latkcd = false
+		elif leftatk == true:
+			$AnimationPlayer.play("LATK2")
+			await get_tree().create_timer(0.5).timeout
+			$AnimationPlayer.play("RESET2")
+			latkcd = false
 	
 func face_direction():
 	if direction > 0:
 		$Sprite2D.flip_h = false
-		$atk.position.x = 74 
+		rightatk = true
+		leftatk = false
+		if $AnimationPlayer.current_animation != "LATK":
+			$AnimationPlayer.play("RESET")
 	elif direction < 0:
 		$Sprite2D.flip_h = true
-		$atk.position.x = -74
+		rightatk = false
+		leftatk = true
+		if $AnimationPlayer.current_animation != "LATK2":
+			$AnimationPlayer.play("RESET2")
+
+
+
+func _on_latkcd_timeout():
+	latkcd = true
+
