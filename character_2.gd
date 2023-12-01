@@ -5,6 +5,7 @@ var airdecel = 0.01
 var rightatk = true
 var leftatk = false
 var latkcd = true
+@export var walljump = -200
 @export var speed = 200
 @export var jump_speed = -150
 @export var gravity = 500
@@ -12,6 +13,9 @@ var latkcd = true
 func _physics_process(delta):
 	print(Globals.latk)
 	direction = Input.get_axis('p2left', 'p2right')
+	if Input.is_action_just_pressed("p2jump") and is_on_wall():
+		velocity.y = walljump
+		direction = direction * -1.0
 	if not is_on_floor():
 		velocity.y += gravity * delta
 	if Input.is_action_just_pressed('p2jump') and is_on_floor():
@@ -43,12 +47,14 @@ func latk():
 func face_direction():
 	if direction > 0:
 		$Sprite2D.flip_h = false
+#		$AnimationPlayer.play("RESET")
 		rightatk = true
 		leftatk = false
 		if $AnimationPlayer.current_animation != "LATK":
 			$AnimationPlayer.play("RESET")
 	elif direction < 0:
 		$Sprite2D.flip_h = true
+#		$AnimationPlayer.play("RESET2")
 		rightatk = false
 		leftatk = true
 		if $AnimationPlayer.current_animation != "LATK2":
@@ -59,3 +65,7 @@ func face_direction():
 func _on_latkcd_timeout():
 	latkcd = true
 
+
+func _on_area_2d_area_entered(area):
+	if area.is_in_group("enemy"):
+		Globals.lives -= 1
