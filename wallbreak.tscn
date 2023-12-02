@@ -1,7 +1,47 @@
-[gd_scene load_steps=5 format=3 uid="uid://db3divf32d7fb"]
+[gd_scene load_steps=10 format=3 uid="uid://db3divf32d7fb"]
 
 [ext_resource type="Script" path="res://wallbreak.gd" id="1_iujss"]
-[ext_resource type="Texture2D" uid="uid://bkshxvr674s0u" path="res://icon.svg" id="2_e0ke7"]
+[ext_resource type="Texture2D" uid="uid://bcuhqq1fccdiv" path="res://tilemap.png" id="2_kspr6"]
+[ext_resource type="Texture2D" uid="uid://cm2os2naib0ra" path="res://tilemap (1).png" id="3_8w164"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_re0al"]
+atlas = ExtResource("2_kspr6")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ggm8"]
+atlas = ExtResource("3_8w164")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_auiss"]
+atlas = ExtResource("3_8w164")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m865b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_re0al")
+}],
+"loop": true,
+"name": &"wall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ggm8")
+}],
+"loop": true,
+"name": &"wallbreak",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_auiss")
+}],
+"loop": true,
+"name": &"wallbreak2",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q8qgh"]
 size = Vector2(130, 130)
@@ -12,8 +52,10 @@ size = Vector2(136, 136)
 [node name="wallbreak" type="StaticBody2D"]
 script = ExtResource("1_iujss")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_e0ke7")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2.03373, 2.03373)
+sprite_frames = SubResource("SpriteFrames_m865b")
+animation = &"wallbreak2"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_q8qgh")
